@@ -19,18 +19,18 @@ When Python3 & pip3 is already installed, please use pip3 to install dependencie
 
 This script uses with command line interface(CLI).
 
-`python3 script.py URL`
+`python3 main.py URL`
 
 Where:
 - python3 - python executable file
-- script.py - name of this script
+- main.py - name of this script
 - URL - url for count clicks or make shot url
 
 Examples:
 
-1. `python3 script.py https://www.googe.com` - make short bit.ly link for www.google.com
-2. `python3 script.py bitly.is/2Z2tgNf` - count clicks for this short link
-3. `python3 script.py www.googe.com` - raise error: please use http(s) prefix
+1. `python3 main.py https://www.googe.com` - make short bit.ly link for www.google.com
+2. `python3 main.py bitly.is/2Z2tgNf` - count clicks for this short link
+3. `python3 main.py www.googe.com` - raise error: please use http(s) prefix
 
 ###### Project Goals
 
