@@ -4,7 +4,7 @@ This project was create to:
  - make short links with **bitly.com** (www.bitly.com) service
  - to count clicks with exists short links 
 
-###### How to install
+##### How to install
 
 For use you need:
 - python3 (www.python.org)
@@ -15,7 +15,7 @@ When Python3 & pip3 is already installed, please use pip3 to install dependencie
 
 `pip install -r requirements.txt`
 
-###### How to use
+##### How to use
 
 This script uses with command line interface(CLI).
 
@@ -32,6 +32,6 @@ Examples:
 2. `python3 main.py bitly.is/2Z2tgNf` - count clicks for this short link
 3. `python3 main.py www.googe.com` - raise error: please use http(s) prefix
 
-###### Project Goals
+##### Project Goals
 
 The code is written for educational purposes on online-course for web-developers www.dvmn.org.
