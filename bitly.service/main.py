@@ -48,7 +48,7 @@ if __name__ == "__main__":
             if result:
                 for element in result:
                     print ('Date: ', element.get('date')[:10],'Clicks: ',element.get('clicks'))
-            if not result:
+            else:
                 print ('There are no clicks.')
         except requests.exceptions.HTTPError:
             result = '''Error. Invalid URL.
