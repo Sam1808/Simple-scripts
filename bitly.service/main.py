@@ -36,10 +36,10 @@ if __name__ == "__main__":
 
     original_url = args.URL
 
-    if not os.getenv("TOKEN"):
+    if not os.getenv("BITLY_TOKEN"):
         your_token = "Bearer " +  input('Please enter your token: ')
     else:
-        your_token = "Bearer " + str(os.getenv("TOKEN"))
+        your_token = "Bearer " + str(os.getenv("BITLY_TOKEN"))
 
 
     if original_url.startswith('bit.ly'):
