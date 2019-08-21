@@ -4,7 +4,7 @@ This project was create to:
  - make short links with **bitly.com** (www.bitly.com) service
  - to count clicks with exists short links 
 
-#### How to install
+### How to install
 
 For use you need:
 - python3 (www.python.org)
@@ -15,7 +15,7 @@ When Python3 & pip3 is already installed, please use pip3 to install dependencie
 
 `pip install -r requirements.txt`
 
-#### How to use
+### How to use
 
 This script uses with command line interface(CLI).
 
@@ -39,6 +39,6 @@ Make your **.env** text file at the same folder with:
 `BITLY_TOKEN="your_token"`
 
 
-#### Project Goals
+### Project Goals
 
 The code is written for educational purposes on online-course for web-developers www.dvmn.org.
