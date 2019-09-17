@@ -1,82 +1,81 @@
-import requests
 import os
-from os import listdir
-from instabot import Bot
+import requests
 from dotenv import load_dotenv
+from instabot import Bot
+from os import listdir
 
-def extension(link):
-    return (link[(link.rfind('.')):(len(link))])
+path = input('Please enter folder name (default is Images): ')
+spacex_url = input('Please enter SpaceX_URL (default is latest launch): ')
+spacex_choice = input('Would you like to run downloading SpaceX`s photos? (Yes/No): ')
+image_id = input('Please enter Hubble`s image ID (default is 1000):')
+hubble_choice = input('Would you like to run downloading Hubble`s photos? (Yes/No):' )
 
+def get_extension(link):
+    separation_link = os.path.splitext(link)
+    extension = separation_link[1]
+    return (extension)
 
-def image_download(url, filename):
+def download_image(url, filename):
+    print('Run downloading...', filename)
     response = requests.get(url, verify=False)
-    filename = abspath + '/' + filename
-    os.path.normpath(filename)
-    #print(filename)
+    filename = os.path.join(abspath,filename)
     with open(filename, 'wb') as file:
         file.write(response.content)
 
-
 def fetch_spacex_last_launch(spacex_url):
     response = requests.get(spacex_url)
-    spisok = response.json()['links'].get('flickr_images')
-    for element in enumerate(spisok):
-        filename = 'spacex_' + str(element[0]) + '.jpg'
-        #print(filename)
-        image_download(element[1], filename)
+    catalog = response.json()['links'].get('flickr_images')
+    for element in enumerate(catalog):
+        file_number = str(element[0])
+        file_link = element[1]
+        filename = 'spacex_' + file_number + '.jpg'
+        download_image(file_link, filename)
 
-def habble_image_download(id):
+def fetch_habble_image(image_id):
     response = requests.get(habble_url)
-    spisok = response.json()['image_files']
-    for element in reversed(spisok):
+    catalog = response.json()['image_files']
+    for element in reversed(catalog):
         last_link = 'https:' + element.get('file_url')
-        #print(last_link)
-        if extension(last_link) == '.jpg': #download only JPG
-            filename = 'image_id_' + str(id) + str(extension(last_link))
-            print('Run downloading...')
-            image_download(last_link, filename)
+        if get_extension(last_link) == '.jpg': #download only JPG
+            filename = 'image_id_' + str(image_id) + str(get_extension(last_link))
+            download_image(last_link, filename)
             break
 
-path = input('Please enter folder name (default is Image): ')
-if not path:
-    path = 'Images'
-if not os.path.exists(path):
-    os.mkdir(path)
-abspath = os.path.abspath(path)
 
+if __name__ == '__main__':
 
-spacex_url = input('Please enter SpaceX_URL (default is latest launch): ')
-if not spacex_url:
-    spacex_url = 'https://api.spacexdata.com/v3/launches/latest'
+    if not path:
+        path = 'Images'
+    os.makedirs(path, exist_ok = True)
+    abspath = os.path.abspath(path)
 
-choice = input('Would you like to run downloading SpaceX`s photos? (Yes/No): ')
-if choice == 'Yes':
-    fetch_spacex_last_launch(spacex_url)
+    if not spacex_url:
+        spacex_url = 'https://api.spacexdata.com/v3/launches/latest'
 
-id = input('Please enter Hubble`s image ID (default is 1000):')
-if not id:
-    id = 1000
-habble_url = 'http://hubblesite.org/api/v3/image/' + str(id)
+    if spacex_choice == 'Yes':
+        fetch_spacex_last_launch(spacex_url)
 
-choice = input('Would you like to run downloading Hubble`s photos? (Yes/No):' )
-if choice == 'Yes':
-    habble_image_download(id)
+    if not image_id:
+        image_id = 1000
+    habble_url = 'http://hubblesite.org/api/v3/image/' + str(image_id)
 
-pictures = listdir(path)
+    if hubble_choice == 'Yes':
+        fetch_habble_image(image_id)
 
-if len(pictures) != 0:
-    load_dotenv()
-    INSTA_LOGIN = os.getenv("INSTA_LOGIN")
-    INSTA_PASS = os.getenv("INSTA_PASS")
-    if not INSTA_LOGIN:
-        INSTA_LOGIN = input('Please enter your Instagram Login: ')
-        INSTA_PASS =  input('Please enter your Instagram Password: ')
-    bot = Bot()
-    bot.login(username=INSTA_LOGIN, password=INSTA_PASS)
-    for pic in pictures:
-        photo_path = str(abspath + '/' + pic)
-        os.path.normpath(photo_path)
-        print('Image will be upload: ', photo_path)
-        bot.upload_photo(photo_path, caption="Space...")
-else:
-    print('There is no files to upload. Have a nice day!')
+    pictures = listdir(path)
+
+    if len(pictures) != 0:
+        load_dotenv()
+        INSTA_LOGIN = os.getenv("INSTA_LOGIN")
+        INSTA_PASS = os.getenv("INSTA_PASS")
+        if not INSTA_LOGIN:
+            INSTA_LOGIN = input('Please enter your Instagram Login: ')
+            INSTA_PASS =  input('Please enter your Instagram Password: ')
+        bot = Bot()
+        bot.login(username=INSTA_LOGIN, password=INSTA_PASS)
+        for pic in pictures:
+            photo_path = os.path.join(abspath,pic)
+            print('Image will be upload: ', photo_path)
+            bot.upload_photo(photo_path, caption="Space...")
+    else:
+        print('There is no files to upload. Have a nice day!')
