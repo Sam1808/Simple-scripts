@@ -19,15 +19,31 @@ When Python3 & pip3 is already installed, please use pip3 to install dependencie
 
 This script uses with command line interface(CLI).
 
-`python3 main.py`
+`python3 main.py [options]`
 
 Where:
 - python3 - python executable file
 - main.py - name of this script
+- options - options to create folder and download images. To list all options please use:
+
+`python3 main.py --help` 
+
+Examples:
+
+`python3 main.py -p Pictures -s https://api.spacexdata.com/v3/launches/82 -ha 3892`
+
+Where:
+
+`-p` Folder name for pictures (default is 'Images');
+
+`-s` URL with http(s) prefix to download SpaceX images;
+
+`-ha` Hubble`s image ID
 
 Description:
 
 Script uses SpaceX API [http://bit.ly/2N2V9Pz] and Habble API [http://bit.ly/2UKQgLT] 
+
 
 
 ##### Important
