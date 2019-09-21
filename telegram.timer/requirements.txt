@@ -1,0 +1,5 @@
+cryptography==2.5
+pycparser==2.19
+python-dotenv==0.10.3
+python-telegram-bot==12.1.1
+timer3==0.1.2
