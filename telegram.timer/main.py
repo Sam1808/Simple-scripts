@@ -13,26 +13,28 @@ def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='
   return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
 
 def notify(time):
-  message = 'The time is over! (' + time + ' sec)'
+  message = f'The time is over! ({time} sec)'
   bot.send_message(chat_id, message)
   bot.send_message(chat_id, "How long to start the timer?")
 
 def notify_progress(secs_left, msg_id, total):
   progress_message = render_progressbar(total, secs_left)
-  message = str(secs_left) + ' seconds left!' + '\n' + progress_message
+  secs_left_string = str(secs_left)
+  message = f'{secs_left_string} seconds left! \n {progress_message}'
   bot.update_message(chat_id, msg_id, message)
 
 
 def reply(text):
-  time = str(parse(text))
-  if time.isdigit(): # test if input is seconds
-    message = 'Timer started for '+time+' seconds'
+  time = parse(text)
+  time_string = str(time)
+  if time_string.isdigit(): # Test, if input is seconds
+    message = f'Timer started for {time_string} seconds'
     bot.send_message(chat_id, message)
-    message = str(time) + ' seconds left!'
+    message = f'{time_string} seconds left!'
     message_id = bot.send_message(chat_id, message)
-    timer = int(time)
-    bot.create_countdown(timer, notify_progress, msg_id=message_id, total=timer)
-    bot.create_timer(timer, notify, time)
+    total_timer = time # Only for more readable code
+    bot.create_countdown(total_timer, notify_progress, msg_id=message_id, total=total_timer)
+    bot.create_timer(total_timer, notify, time)
   else:
     bot.send_message(chat_id, "Please enter the time (for example: 5s or 1.2m)")
 
@@ -47,9 +49,7 @@ def get_credentials():
   return credentials
 
 if __name__ == '__main__':
-  credentials = get_credentials()
-  token = credentials[0]
-  chat_id = credentials[1]
+  token, chat_id = get_credentials()
   bot = ptbot.Bot(token)
   bot.send_message(chat_id, "How long to start the timer?")
   bot.wait_for_msg(reply)
