@@ -1,9 +1,9 @@
 
 ## Instagram util
 
-###Идея: -> Svetlana Pozdnyakova
+### Идея: -> Svetlana Pozdnyakova
 
-####Руки: -> Anton Pozdnyakov (anton.pozdnyakov.i@gmail.com)
+#### Руки: -> Anton Pozdnyakov (anton.pozdnyakov.i@gmail.com)
 
 ####Версия: 2019.09
     Данный простой скрипт служит для массового "отписывания" пользователей Instagram, чей статус "Подписки"
