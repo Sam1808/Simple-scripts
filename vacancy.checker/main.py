@@ -122,8 +122,6 @@ if __name__ == '__main__':
         'JavaScript'
     ]
 
-    #languages = ['Python', 'Java']
-
     language_vacancies_hh = {}
     language_vacancies_sj = {}
 
