@@ -1,5 +1,3 @@
-#TODO полечить двойной запрос vacancy_salary
-
 import requests
 import os
 from dotenv import load_dotenv
