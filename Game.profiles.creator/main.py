@@ -7,7 +7,7 @@ def to_old_alfabet(letters):
     runic_letters = []
     for letter in letters:
         if letter.isalpha():
-            letter = letter.replace(letter, old_english_alffabet.get(letter))
+            letter = letter.replace(letter, old_english_alfabet.get(letter))
         runic_letters.append(letter)
     return runic_letters
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         'Secret escape', 'Ice shot', 'Fiery bomb',
     ]
 
-    old_english_alffabet = {            # use english old alfabet
+    old_english_alfabet = {            # use english old alfabet
         'A': '𝔄', 'B': '𝔅', 'C': 'ℭ',
         'D': '𝔇', 'E': '𝔈', 'F': '𝔉',
         'G': '𝔊', 'H': 'ℌ', 'I': 'ℑ',
@@ -79,6 +79,6 @@ if __name__ == '__main__':
             "third_skill": runic_skills[2],
         }
 
-        filename = 'charsheet-{}.txt'.format(number)
+        filename = 'charsheet-{}.svg'.format(number)
         filename = os.path.join(abspath,filename)
         file_operations.render_template("template.txt", filename, context)
