@@ -1,0 +1,14 @@
+Name: {name}
+Surname: {surname}
+City: {city}
+Specialization: {specialization}
+Strength: {strength}
+Dexterity: {dexterity}
+Precision: {precision}
+Endurance: {endurance}
+Mana: {mana}
+Luck: {luck}
+Oratory: {oratory}
+First skill: {first_skill}
+Second skill: {second_skill}
+Third skill: {third_skill}
