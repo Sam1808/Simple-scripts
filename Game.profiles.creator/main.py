@@ -3,23 +3,26 @@ import os
 import random
 from faker import Faker
 
-def to_old_alfabet(letters):
-    runic_letters = []
-    for letter in letters:
+def replace_to_old_alfabet(skill):
+    skill_with_runic_letters = ''
+    for letter in skill:
         if letter.isalpha():
             letter = letter.replace(letter, old_english_alfabet.get(letter))
-        runic_letters.append(letter)
-    return runic_letters
+        skill_with_runic_letters += letter
+    return skill_with_runic_letters
 
-def get_credentials():
+def get_hero_description():
     first_name = fake.first_name()
     last_name = fake.last_name()
     city = fake.city()
     specialization = fake.job()
     return first_name, last_name, city, specialization
 
+
 if __name__ == '__main__':
+
     fake = Faker()
+
     skills = [
         'Rapid jump', 'Electric shot', 'Ice strike', 'Rapid strike', 'Acid look',
         'Secret escape', 'Ice shot', 'Fiery bomb',
@@ -50,16 +53,21 @@ if __name__ == '__main__':
     os.makedirs(path, exist_ok = True)
     abspath = os.path.abspath(path)
 
-    for number in range(10):
+    count_of_profiles = 10
+    number_of_random_skills = 3
+    power_from = 8
+    power_to = 14
 
-        first_name, last_name, city, specialization = get_credentials()
-        random_skills = random.sample(skills, 3)
+    for profile in range(count_of_profiles):
+
+        first_name, last_name, city, specialization = get_hero_description()
+
+        random_skills = random.sample(skills, number_of_random_skills)
+
         runic_skills = []
 
         for skill in random_skills:
-            skill = list(skill)
-            runic_skill = to_old_alfabet(skill)
-            runic_skill = ''.join(runic_skill)
+            runic_skill = replace_to_old_alfabet(skill)
             runic_skills.append(runic_skill)
 
         context = {
@@ -67,18 +75,18 @@ if __name__ == '__main__':
             "surname": last_name,
             "city": city,
             "specialization": specialization,
-            "strength": random.randint(8,14),
-            "dexterity": random.randint(8,14),
-            "precision": random.randint(8,14),
-            "endurance": random.randint(8,14),
-            "mana": random.randint(8,14),
-            "luck": random.randint(8,14),
-            "oratory": random.randint(8,14),
+            "strength": random.randint(power_from,power_to),
+            "dexterity": random.randint(power_from,power_to),
+            "precision": random.randint(power_from,power_to),
+            "endurance": random.randint(power_from,power_to),
+            "mana": random.randint(power_from,power_to),
+            "luck": random.randint(power_from,power_to),
+            "oratory": random.randint(power_from,power_to),
             "first_skill": runic_skills[0], # index uses due to random choice
             "second_skill": runic_skills[1],
             "third_skill": runic_skills[2],
         }
 
-        filename = 'charsheet-{}.svg'.format(number)
+        filename = f'charsheet-{profile}.txt'
         filename = os.path.join(abspath,filename)
         file_operations.render_template("template.txt", filename, context)
