@@ -87,6 +87,6 @@ if __name__ == '__main__':
             "third_skill": runic_skills[2],
         }
 
-        filename = f'charsheet-{profile}.txt'
+        filename = f'charsheet-{profile}.svg'
         filename = os.path.join(abspath,filename)
         file_operations.render_template("template.txt", filename, context)
