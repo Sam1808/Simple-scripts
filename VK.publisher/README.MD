@@ -41,6 +41,7 @@ You can combinate options. Example:
 Where: 
 
 `1q2w3e4r5t` - your own VK Token
+
 `-987654321` - ID of your VK group with minus
 
 Description:
@@ -53,6 +54,7 @@ Make your life more happy - use python dotenv library (https://bit.ly/2L5Lsg2) t
 Make your **.env** text file at the same folder with:
 
 `VK_TOKEN='your VK token'`
+
 `GROUP_ID= id of your VK group`
 
 ###### Project Goals
