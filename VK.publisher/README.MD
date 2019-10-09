@@ -34,6 +34,8 @@ Provided options:
 
 `python3 main.py -t` Add your VK Token
 
+`python3 main.py -lc` You can change default number of last comics. Actualy, it is 2212 (October 2019)
+
 You can combinate options. Example:
 
 `python3 main.py -t 1q2w3e4r5t -id -987654321`
