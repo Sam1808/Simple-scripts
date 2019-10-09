@@ -29,14 +29,16 @@ Where:
 Provided options:
 
 `python3 main.py -h` Help
+
 `python3 main.py -id` Add your Group ID
+
 `python3 main.py -t` Add your VK Token
 
 You can combinate options. Example:
 
 `python3 main.py -t 1q2w3e4r5t -id -987654321`
 
-where: 
+Where: 
 
 `1q2w3e4r5t` - your own VK Token
 `-987654321` - ID of your VK group with minus
