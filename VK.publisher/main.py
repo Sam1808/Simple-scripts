@@ -24,7 +24,7 @@ def download_comics(comics_number):
     set_of_data = response.json()
     comics_url = set_of_data.get('img')
     comics_description = set_of_data.get('alt')
-    comics_filename = f'comic-{comics_number}.png'
+    comics_filename = f'comics-{comics_number}.png'
     download_image(comics_url, comics_filename)
     return comics_filename, comics_description
 
