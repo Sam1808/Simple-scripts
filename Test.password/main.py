@@ -7,9 +7,7 @@ def has_letters(password):
     return any(character.isalpha() for character in password)
 
 def is_very_long(password):
-    if len(password) > 12:
-        return True
-    return False
+    return len(password) > 12
 
 def has_upper_letters(password):
     return any(character.isupper() for character in password)
