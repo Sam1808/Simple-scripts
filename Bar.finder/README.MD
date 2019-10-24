@@ -28,9 +28,9 @@ Where:
 
 Provided options:
 
--h   Help
--l   put your location
--sl  show log
+- -h   Help
+- -l   put your location
+- -sl  show log
 
 ###### Examples
 
