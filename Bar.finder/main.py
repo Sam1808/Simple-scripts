@@ -95,15 +95,15 @@ def get_close_in_x_bars(set_of_bars, number_of_close_in_bars):
     close_in_x_bars = close_in_bars[:number_of_close_in_bars]
     return close_in_x_bars
 
-def create_map_with_close_in_bars(map, close_in_x_bars):
+def create_map_with_close_in_bars(my_map, close_in_x_bars):
     for bar in close_in_x_bars:
         bar_location = [bar['latitude'], bar['longitude']]
         folium.Marker(
             location = bar_location,
             popup=bar['title'],
             icon=folium.Icon(color='green'),
-        ).add_to(map)
-    return map
+        ).add_to(my_map)
+    return my_map
 
 if __name__ == '__main__':
 
@@ -150,11 +150,11 @@ if __name__ == '__main__':
 
     close_in_x_bars = get_close_in_x_bars(set_of_bars, number_of_close_in_bars)
 
-    map = folium.Map(location=my_location, zoom_start=16)
+    my_map = folium.Map(location=my_location, zoom_start=16)
 
-    map = create_map_with_close_in_bars(map,close_in_x_bars)
+    my_map = create_map_with_close_in_bars(my_map,close_in_x_bars)
 
-    map.save('index.html')
+    my_map.save('index.html')
 
     app = Flask(__name__)
     app.add_url_rule('/', 'My bars map', get_bars_map)
