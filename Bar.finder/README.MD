@@ -46,7 +46,7 @@ Find bars near 'метро аннино' and see info messages.
 Description:
 
 Script uses Moscow bars datebase and Yandex API.
-After run of script please enter URL http://0.0.0.0:5000/ at your brouser to see bar map.
+After run of script please enter URL http://0.0.0.0:5000/ at your browser to see bar map.
 To stop script press _Ctrl+C_
 
 
