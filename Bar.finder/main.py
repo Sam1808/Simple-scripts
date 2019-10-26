@@ -33,7 +33,7 @@ def get_my_location(own_location, yandex_token):
     return None
 
 def check_for_errors(response, location):
-    if response.status_code != 200:
+    if not response.ok:
         response = response.json()
         error = response['error']
         message = response['message']
@@ -48,12 +48,12 @@ def check_for_errors(response, location):
     return True
 
 def get_database_file():
-    files = listdir()
+    filenames_list = listdir()
     database_file = None
-    for file in files:
-        if '.json' in file:
-            database_file = file
-            logging.info(f'Find JSON file {database_file}')
+    for filename in filenames_list:
+        if filename.endswith('.json'):
+            database_file = filename
+            logging.info(f'Find JSON file {database_file}. >>>OK!')
     if not database_file:
         logging.error(f'''
          Can not find JSON database file.
